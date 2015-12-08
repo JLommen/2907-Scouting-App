@@ -22,54 +22,85 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 public class ParentPane {
+	
+	//creates a new JPanel
 	public JPanel panel = new JPanel();
+	
+	//creates elements that won't be in other panels
+	//object names are abbreviated but the actual text content will provide a more clear
+	//description of the purpose of each object
+	
+	//check boxes for negative fields, not in other boxes
 	Checkbox db = new Checkbox("Dead Bot");
 	Checkbox tip = new Checkbox("Tip Over");
 	Checkbox ns = new Checkbox("No Show");
 	Checkbox koc = new Checkbox("Knock Over Crates");
+	
+	//text fields for the match/team number
 	JTextField match = new JTextField();
-	JTextField number = new JTextField();
+	JTextField number = new JTextField();//team number
+	
+	//creates the panel for the autonomous section of the scoring sheet
 	Auto autoWindow = new Auto();
+	
+	//creates the panel for the autonomous starting position section of the scoring sheet
 	AutoStartingPosition asp = new AutoStartingPosition();
+	
+	//creates the panel for the zone most played section of the scoring sheet
 	ZonePlayed zp = new ZonePlayed();
+	
+	//creates the panel for the tote tally section of the scoring sheet
 	ToteTally tt = new ToteTally();
+	
+	//creates the panel for the teleop section of the scoring sheet
 	TeleOp to = new TeleOp();
+	
+	//creates the panel for the additional information section of the scoring sheet, this is assorted information
+	//that, while relevant, is unrelated to each other but all are in the same box.
 	InfoBox ib = new InfoBox();
+	
+	//creates the panel for the note section of the scoring sheet, notes are scored by check boxes as opposed to a text field
 	Notes note = new Notes();
 
-	/**
-	 * 
-	 */
+
+	//creates the main pane that the objects just created will be added to
 	public ParentPane() {
+		//sets parameters like the border, layout, size, color, etc.
 		Border border = BorderFactory.createLineBorder(Color.black);
-		panel.setLayout(null);
+		panel.setLayout(null);//null layout allows for exact x,y positioning of elements, but makes scaling difficult
 		panel.setSize(910, 600);
 		panel.setLocation(100, 25);
 		panel.setBackground(Color.white);
 		panel.setBorder(border);
 
+		//creates a font used for input fields
 		Font input = new Font("Helvetica", Font.BOLD, 20);
-
+		
+		//simply puts text in the panel that identifies the input below it as team number input
 		JLabel Teamnum = new JLabel("Team Number:");
 		Teamnum.setFont(input);
 		Teamnum.setSize(175, 25);
 		Teamnum.setLocation(50, 400);
 
-		
-			number.setSize(75, 25);
+		//sets the attributes of the input box its self
+		number.setSize(75, 25);
 		number.setFont(input);
 		number.setLocation(200, 400);
+		
+		//simply puts text in the panel that identifies the input below it as match number input
 		JLabel Matchnum = new JLabel("Match Number:");
 		Matchnum.setFont(input);
 		Matchnum.setSize(175, 25);
 		Matchnum.setLocation(300, 400);
 
+		//sets the attributes of the input box its self
 		match.setSize(43, 25);
 		match.setFont(input);
 		match.setLocation(450, 400);
 		match.setText("0");
-		match.setEditable(false);
+		match.setEditable(false);//note that the user cannot directly modify this value, they will use a button to add and subtract from it
 
+		//the check boxes we created are now having attributes applied to them
 		db.setSize(70, 20);
 		db.setLocation(520, 400);
 		tip.setSize(70, 20);
@@ -79,15 +110,18 @@ public class ParentPane {
 		koc.setSize(120, 20);
 		koc.setLocation(730, 400);
 
+		
+		//adds a button to export the data that has been entered into excel
 		JButton export = new JButton("Export");
 		export.setFont(input);
 		export.setSize(200, 100);
 		export.setLocation(650, 450);
 
+		//adds an action listener
 		export.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					exportExcel();
+					exportExcel();//calls export function
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -95,28 +129,35 @@ public class ParentPane {
 			}
 
 		});
+		
+		//match add button, adds 1 to the match number value
 		JButton Madd = new JButton("+");
 		
+		//attributes are set
 		Madd.setSize(43, 43);
 		Madd.setLocation(450,425);
+		
+		//action listener is created
 		Madd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					if(Integer.parseInt(match.getText()) <999)
 					{
-					match.setText(Integer.toString(Integer.parseInt(match.getText()) +1));
+					match.setText(Integer.toString(Integer.parseInt(match.getText()) +1));//parses the new integer to a text value
 					}
 					
 				
 			}});
-       JButton Msub = new JButton("-");
 		
+		//match subtract button, subtracts 1 to the match number value
+       JButton Msub = new JButton("-");
+		//attributes
 		Msub.setSize(43, 43);
 		Msub.setLocation(450,470);
 		Msub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					if(Integer.parseInt(match.getText()) >0)
 					{
-					match.setText(Integer.toString(Integer.parseInt(match.getText()) -1));
+					match.setText(Integer.toString(Integer.parseInt(match.getText()) -1));;//parses the new integer to a text value
 					}
 					
 				
@@ -124,7 +165,7 @@ public class ParentPane {
 		
 		
 			
-
+		//adds everything to the panel
 		panel.add(autoWindow.panel);
 		panel.add(asp.panel);
 		panel.add(zp.panel);
@@ -145,6 +186,7 @@ public class ParentPane {
 		panel.add(Msub);
 	}
 
+	//export function requires apache poi library
 	private void exportExcel() throws IOException {
 		System.out.println("exporting");
 		FileInputStream file = new FileInputStream(new File(
@@ -450,6 +492,7 @@ public class ParentPane {
 		wb.close();
 		reset();
 	}
+	//resets all of the fields-match number
 	void reset()
 	{
 		autoWindow.toteGroup.setSelectedCheckbox(autoWindow.tote0);

@@ -9,13 +9,15 @@ import javax.swing.border.Border;
 
 public class Auto 
 {
+	//creates panel
 	public JPanel panel = new JPanel();
-	CheckboxGroup toteGroup = new CheckboxGroup();
+	//sets up and creates check boxes
+	CheckboxGroup toteGroup = new CheckboxGroup(); //grouping check boxes allows only one to be checked at a time
 	Checkbox tote0 = new Checkbox("",toteGroup,true);
     Checkbox tote1 = new Checkbox("",toteGroup,false);
     Checkbox tote2 = new Checkbox("",toteGroup,false);
     Checkbox tote3 = new Checkbox("",toteGroup,false);
-    CheckboxGroup canGroup = new CheckboxGroup();
+    CheckboxGroup canGroup = new CheckboxGroup();//grouping check boxes allows only one to be checked at a time
    	Checkbox can0 = new Checkbox("",canGroup,true);
        Checkbox can1 = new Checkbox("",canGroup,false);
        Checkbox can2 = new Checkbox("",canGroup,false);
@@ -23,11 +25,13 @@ public class Auto
        
       
    	Checkbox move0 = new Checkbox("");
-      
+      //constructor
 	public Auto()
 	{
+	//creates border
 	Border border = BorderFactory.createLineBorder(Color.black);
 	
+	//sets panel attributes
 	panel.setLayout(null);
 	panel.setSize(200,140);
 	panel.setLocation(50,50);
