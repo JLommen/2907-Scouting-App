@@ -9,13 +9,15 @@ import javax.swing.border.Border;
 
 public class Auto 
 {
+	//creates panel
 	public JPanel panel = new JPanel();
-	CheckboxGroup toteGroup = new CheckboxGroup();
+	//sets up and creates check boxes
+	CheckboxGroup toteGroup = new CheckboxGroup(); //grouping check boxes allows only one to be checked at a time
 	Checkbox tote0 = new Checkbox("",toteGroup,true);
     Checkbox tote1 = new Checkbox("",toteGroup,false);
     Checkbox tote2 = new Checkbox("",toteGroup,false);
     Checkbox tote3 = new Checkbox("",toteGroup,false);
-    CheckboxGroup canGroup = new CheckboxGroup();
+    CheckboxGroup canGroup = new CheckboxGroup();//grouping check boxes allows only one to be checked at a time
    	Checkbox can0 = new Checkbox("",canGroup,true);
        Checkbox can1 = new Checkbox("",canGroup,false);
        Checkbox can2 = new Checkbox("",canGroup,false);
@@ -23,22 +25,25 @@ public class Auto
        
       
    	Checkbox move0 = new Checkbox("");
-      
+      //constructor
 	public Auto()
 	{
+	//creates border
 	Border border = BorderFactory.createLineBorder(Color.black);
 	
+	//sets panel attributes
 	panel.setLayout(null);
 	panel.setSize(200,140);
 	panel.setLocation(50,50);
 	panel.setBackground(Color.white);
 	panel.setBorder(border);
 
-	
+	//creates a label for the scoring scale
 	JLabel autoLabel = new JLabel("Auto:               0:       1:       2:       3:");
 	autoLabel.setSize(200,10);
 	autoLabel.setLocation(10,5);
 	
+	//labels the categories
 	JLabel totesLabel = new JLabel("Totes:");
 	totesLabel.setSize(50,10);
 	totesLabel.setLocation(10,23);
@@ -49,7 +54,7 @@ public class Auto
 	moveLabel.setSize(50,10);
 	moveLabel.setLocation(10,115);
 	
-	
+	//sets attributes for totes check boxes
     tote0.setSize(25,25);
     tote0.setLocation(82,16);
     tote0.setVisible(true);
@@ -64,7 +69,7 @@ public class Auto
     tote3.setVisible(true);
     
     
-   
+    //sets attributes for can check boxes
     can0.setSize(25,25);
     can0.setLocation(82,60);
     can0.setVisible(true);
@@ -78,12 +83,12 @@ public class Auto
     can3.setLocation(172,60);
     can3.setVisible(true);
     
-   
+    //sets attributes for move check boxes
     move0.setSize(25,25);
     move0.setLocation(82,110);
     move0.setVisible(true);
     
-	
+	//adds all the elements to the panel
 	panel.add(autoLabel);
 	panel.add(totesLabel);
 	panel.add(cansLabel);

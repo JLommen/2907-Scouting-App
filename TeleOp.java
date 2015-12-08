@@ -9,7 +9,11 @@ import javax.swing.border.Border;
 
 
 public class TeleOp {
+	
+	//creates panel
 	public JPanel panel = new JPanel();
+	
+	//creates all the check boxes and their groups
 	CheckboxGroup DWO = new CheckboxGroup();
 	
 	Checkbox dwo0 = new Checkbox("0",DWO,true);
@@ -47,14 +51,15 @@ CheckboxGroup tw = new CheckboxGroup();
 	Checkbox tw3 = new Checkbox("3",tw,false);
 	Checkbox tw4 = new Checkbox("4",tw,false);
 	
+
 	CheckboxGroup pick = new CheckboxGroup();
 	Checkbox yes = new Checkbox("Yes",pick,false);
 	Checkbox no = new Checkbox("No",pick,true);
 	
 	public TeleOp()
 	{
-		Border border = BorderFactory.createLineBorder(Color.black);
-	
+	//border and panel properties assigned
+	Border border = BorderFactory.createLineBorder(Color.black);	
 	panel.setLayout(null);
 	panel.setSize(403,168);
 	panel.setLocation(456,50);
@@ -62,29 +67,36 @@ CheckboxGroup tw = new CheckboxGroup();
 	panel.setBorder(border);
 	
 
+	//creates lables for each category
 	JLabel title = new JLabel("Tele-Op");
 	title.setSize(175,13);
 	title.setLocation(180,3);
+	
 	JLabel obs = new JLabel("Deal with Obstacles");
 	obs.setSize(125,13);
 	obs.setLocation(15,25);
+	
 	JLabel pic = new JLabel("Pick-Up Mechanism");
 	pic.setSize(125, 13);
 	pic.setLocation(15,50);
+	
 	JLabel cont = new JLabel("Well-Controled");
 	cont.setSize(125,13);
 	cont.setLocation(15,75);
+	
 	JLabel bin = new JLabel("Manipulate Bins");
 	bin.setSize(125,13);
 	bin.setLocation(15,100);
+	
 	JLabel tea = new JLabel("Teamwork");
 	tea.setSize(125,13);
 	tea.setLocation(15,125);
+	
 	JLabel you = new JLabel("Would You Pick Them?");
 	you.setSize(160,13);
 	you.setLocation(80,150);
 	
-
+	//sets check box attributes
 	dwo0.setLocation(160,25);
 	dwo0.setSize(23,13);
 	dwo1.setLocation(205,25);
@@ -154,6 +166,8 @@ CheckboxGroup tw = new CheckboxGroup();
 	no.setSize(50,13);
 	no.setLocation(325, 150);
 	
+	
+	//adds each object to the panel
 	panel.add(title);
 	panel.add(obs);
 	panel.add(pic);
