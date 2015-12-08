@@ -186,14 +186,23 @@ public class ParentPane {
 		panel.add(Msub);
 	}
 
-	//export function requires apache poi library
+	//export function requires apache poi library	
+	//please note that this code is the first iteration and can be written more efficiently, but it work and takes about .5 seconds to complete
+	//if it ain't broke don't fix it
 	private void exportExcel() throws IOException {
 		System.out.println("exporting");
+		
+		//opens workbook.xls file
 		FileInputStream file = new FileInputStream(new File(
 				"workbook.xls"));
+		
+		//creates Workbook object
 		Workbook wb = new HSSFWorkbook(file);
-		//CreationHelper createHelper = wb.getCreationHelper();
+		
+		//creates a sheet object from the first sheet in the workbook object
 		Sheet sheet = wb.getSheetAt(0);
+		
+		//sets the integer endLine to the last line in the document
 		boolean end = true;
 		int endLine = 0;
 		for (int i = 0; end; i++) {
@@ -202,15 +211,27 @@ public class ParentPane {
 				endLine = i;
 			}
 		}
+		
+		//creates row object at the end of the file
 		Row row = sheet.createRow(endLine);
+		
+		//integer to keep track of the current cell we are working with
 		int cellCount = 0;
+		
+		//creates a new cell in our row
 		Cell cell = row.createCell(cellCount);
+		
+		//puts in the team number. the .replaceAll is a reminent from when I was working with an older version of the software
 		cell.setCellValue(Integer.parseInt(number.getText().replaceAll(",","")));
 		cellCount++;
 		cell = row.createCell(cellCount);
+		
+		//puts in the match number
 		cell.setCellValue(Integer.parseInt(match.getText()));
 		cellCount++;
 		cell = row.createCell(cellCount);
+		
+		//determines which check box was checked for the totes category in the auto box and fills in the corresponding value
 		if (autoWindow.toteGroup.getSelectedCheckbox() == autoWindow.tote3) {
 			cell.setCellValue(3);
 		} else if (autoWindow.toteGroup.getSelectedCheckbox() == autoWindow.tote2) {
@@ -222,6 +243,8 @@ public class ParentPane {
 		}
 		cellCount++;
 		cell = row.createCell(cellCount);
+		
+		//determines which check box was checked for the cans category in the auto box and fills in the corresponding value
 		if (autoWindow.canGroup.getSelectedCheckbox() == autoWindow.can3) {
 			cell.setCellValue(3);
 		} else if (autoWindow.canGroup.getSelectedCheckbox() == autoWindow.can2) {
@@ -233,6 +256,9 @@ public class ParentPane {
 		}
 		cellCount++;
 		cell = row.createCell(cellCount);
+		
+		//determines which check box was checked for the move category in the auto box and fills in the corresponding value
+		//please note that I can assign different data types to the cells (int,boolean,string,float,etc.)
 		if (autoWindow.move0.getState()) {
 			cell.setCellValue(true);
 		} else {
@@ -240,6 +266,8 @@ public class ParentPane {
 		}
 		cellCount++;
 		cell = row.createCell(cellCount);
+		
+		//determines which check box was checked for the position in the auto start position box and fills in the corresponding value
 		if (asp.asp.getSelectedCheckbox() == asp.asp4) {
 			cell.setCellValue(4);
 		} else if (asp.asp.getSelectedCheckbox() == asp.asp3) {
@@ -253,6 +281,8 @@ public class ParentPane {
 		}
 		cellCount++;
 		cell = row.createCell(cellCount);
+		
+		//determines which check box was checked for the zone most played box and fills in the corresponding value
 		if (zp.checkGroup.getSelectedCheckbox() == zp.az) {
 			cell.setCellValue(0);
 		} else if (zp.checkGroup.getSelectedCheckbox() == zp.of) {
@@ -262,64 +292,63 @@ public class ParentPane {
 		} else if (zp.checkGroup.getSelectedCheckbox() == zp.pf) {
 			cell.setCellValue(3);
 		}
-
 		cellCount++;
-
 		cell = row.createCell(cellCount);
-
+		
+		
+		//fills in the tote tallys, note that I need to parse the string returned from the text box into an integer
 		cell.setCellValue(Integer.parseInt(tt.one.getText()));
-
 		cellCount++;
 		cell = row.createCell(cellCount);
-
+		
 		cell.setCellValue(Integer.parseInt(tt.two.getText()));
-
 		cellCount++;
 		cell = row.createCell(cellCount);
 
 		cell.setCellValue(Integer.parseInt(tt.three.getText()));
-
 		cellCount++;
 		cell = row.createCell(cellCount);
 
 		cell.setCellValue(Integer.parseInt(tt.four.getText()));
-
 		cellCount++;
 		cell = row.createCell(cellCount);
 
 		cell.setCellValue(Integer.parseInt(tt.five.getText()));
-
 		cellCount++;
 		cell = row.createCell(cellCount);
 
 		cell.setCellValue(Integer.parseInt(tt.six.getText()));
-
 		cellCount++;
 		cell = row.createCell(cellCount);
+		
+		//puts the value from the check box into the cell
 		if (ib.can.getState()) {
 			cell.setCellValue(true);
 		} else {
 			cell.setCellValue(false);
 		}
-
 		cellCount++;
 		cell = row.createCell(cellCount);
+		
+		//puts the value from the check box into the cell
 		if (ib.floor.getState()) {
 			cell.setCellValue(true);
 		} else {
 			cell.setCellValue(false);
 		}
-
 		cellCount++;
 		cell = row.createCell(cellCount);
+		
+		//puts the value from the check box into the cell
 		if (ib.hp.getState()) {
 			cell.setCellValue(true);
 		} else {
 			cell.setCellValue(false);
 		}
-
 		cellCount++;
 		cell = row.createCell(cellCount);
+		
+		//puts in coop value
 		if (ib.coop.getSelectedCheckbox() == ib.set) {
 			cell.setCellValue("Set");
 		} else if (ib.coop.getSelectedCheckbox() == ib.stack) {
@@ -327,9 +356,10 @@ public class ParentPane {
 		} else if (ib.coop.getSelectedCheckbox() == ib.none) {
 			cell.setCellValue("No Coop");
 		}
-
 		cellCount++;
 		cell = row.createCell(cellCount);
+		
+		//stackapacity field is filled
 		if (ib.stackGroup.getSelectedCheckbox() == ib.ssix) {
 			cell.setCellValue(6);
 		} else if (ib.stackGroup.getSelectedCheckbox() == ib.sfive) {
@@ -345,17 +375,19 @@ public class ParentPane {
 		} else if (ib.stackGroup.getSelectedCheckbox() == ib.snul) {
 			cell.setCellValue(0);
 		}
-
 		cellCount++;
 		cell = row.createCell(cellCount);
+		
+		//puts the value from the check box into the cell
 		if (ib.plus.getState()) {
 			cell.setCellValue(true);
 		} else {
 			cell.setCellValue(false);
 		}
-
 		cellCount++;
 		cell = row.createCell(cellCount);
+		
+		//puts the value from deals with obstacles into the cell
 		if (to.DWO.getSelectedCheckbox() == to.dwo4) {
 			cell.setCellValue(4);
 		} else if (to.DWO.getSelectedCheckbox() == to.dwo3) {
@@ -367,10 +399,10 @@ public class ParentPane {
 		} else if (to.DWO.getSelectedCheckbox() == to.dwo0) {
 			cell.setCellValue(0);
 		}
-
 		cellCount++;
-
 		cell = row.createCell(cellCount);
+		
+		//puts the value from pick up mechanism into the cell
 		if (to.pum.getSelectedCheckbox() == to.pum4) {
 			cell.setCellValue(4);
 		} else if (to.pum.getSelectedCheckbox() == to.pum3) {
@@ -382,9 +414,10 @@ public class ParentPane {
 		} else if (to.pum.getSelectedCheckbox() == to.pum0) {
 			cell.setCellValue(0);
 		}
-
 		cellCount++;
 		cell = row.createCell(cellCount);
+		
+		//puts the value from well controlled into the cell
 		if (to.wc.getSelectedCheckbox() == to.wc4) {
 			cell.setCellValue(4);
 		} else if (to.wc.getSelectedCheckbox() == to.wc3) {
@@ -396,10 +429,10 @@ public class ParentPane {
 		} else if (to.wc.getSelectedCheckbox() == to.wc0) {
 			cell.setCellValue(0);
 		}
-
 		cellCount++;
-
 		cell = row.createCell(cellCount);
+		
+		//puts the value from manipulate bins into the cell
 		if (to.mb.getSelectedCheckbox() == to.mb4) {
 			cell.setCellValue(4);
 		} else if (to.mb.getSelectedCheckbox() == to.mb3) {
@@ -411,9 +444,10 @@ public class ParentPane {
 		} else if (to.mb.getSelectedCheckbox() == to.mb0) {
 			cell.setCellValue(0);
 		}
-
 		cellCount++;
 		cell = row.createCell(cellCount);
+		
+		//puts the value from teamwork into the cell
 		if (to.tw.getSelectedCheckbox() == to.tw4) {
 			cell.setCellValue(4);
 		} else if (to.tw.getSelectedCheckbox() == to.tw3) {
@@ -425,17 +459,19 @@ public class ParentPane {
 		} else if (to.tw.getSelectedCheckbox() == to.tw0) {
 			cell.setCellValue(0);
 		}
-
 		cellCount++;
 		cell = row.createCell(cellCount);
+		
+		//puts the value from would pick into the cell
 		if (to.pick.getSelectedCheckbox() == to.yes) {
 			cell.setCellValue(true);
 		} else if (to.pick.getSelectedCheckbox() == to.no) {
 			cell.setCellValue(false);
 		}
-
 		cellCount++;
 		cell = row.createCell(cellCount);
+		
+		//puts the value from notes into the cell, this is used at the discression of the data enterer
 		if(note.checkGroup.getSelectedCheckbox() == note.eNeg)
 		{
 			cell.setCellValue("Extremely Negative");
@@ -456,45 +492,53 @@ public class ParentPane {
 		{
 			cell.setCellValue("Extremely Positive");
 		}
-		
-		
-		
-		
-
 		cellCount++;
 		cell = row.createCell(cellCount);
 
+		//dead bot cell
 		cell.setCellValue(db.getState());
-
 		cellCount++;
 		cell = row.createCell(cellCount);
 
+		//tip over cell
 		cell.setCellValue(tip.getState());
-
 		cellCount++;
 		cell = row.createCell(cellCount);
 
+		//no show cell
 		cell.setCellValue(ns.getState());
-
 		cellCount++;
 		cell = row.createCell(cellCount);
 
+		//knock over crates cell. open ended incase more data is added to the application later
 		cell.setCellValue(koc.getState());
-
 		cellCount++;
 
+		//closes the file, this could probably be done after the workbook is created, but like I said
+		//if it ain't broke don't fix it, we can do this in version 2
 		file.close();
 
+		//opens the file into an output stream
 		FileOutputStream fileOut = new FileOutputStream(
 				"workbook.xls");
+		
+		//writes the workbook to the file output stream
 		wb.write(fileOut);
+		
+		//closes the file
 		fileOut.close();
+		
+		//closes the workbook
 		wb.close();
+		
+		//calls the reset function to clear all the fields
 		reset();
 	}
+	
 	//resets all of the fields-match number
 	void reset()
 	{
+		//sets all but a few values back to their original values
 		autoWindow.toteGroup.setSelectedCheckbox(autoWindow.tote0);
 		autoWindow.canGroup.setSelectedCheckbox(autoWindow.can0);
 		autoWindow.move0.setState(false);
@@ -517,13 +561,14 @@ public class ParentPane {
 		to.mb.setSelectedCheckbox(to.mb0);
 		to.tw.setSelectedCheckbox(to.tw0);
 		to.pick.setSelectedCheckbox(to.no);
-		
 		note.checkGroup.setSelectedCheckbox(note.Neu);
 		db.setState(false);
 		tip.setState(false);
 		ns.setState(false);
 		koc.setState(false);
 		number.setText(" ");
+		
+		//repaints the panel
 		panel.repaint();
 	}
 	}

@@ -10,7 +10,10 @@ import javax.swing.border.Border;
 
 public class ToteTally {
 
+	//creates panel
 	public JPanel panel = new JPanel();
+	
+	//this box uses text field instead of check boxes, this creates them
 	JTextField two = new JTextField();
 	JTextField one = new JTextField();
 	JTextField three = new JTextField();
@@ -19,15 +22,15 @@ public class ToteTally {
 	JTextField six = new JTextField();
 	public ToteTally()
 	{
-		Border border = BorderFactory.createLineBorder(Color.black);
-	
+		//assigns border and panel attributes
+	Border border = BorderFactory.createLineBorder(Color.black);	
 	panel.setLayout(null);
 	panel.setSize(200,168);
 	panel.setLocation(253,50);
 	panel.setBackground(Color.white);
 	panel.setBorder(border);
 	
-
+	//creates labels and gives them attributes
 	JLabel title = new JLabel("Tote Tally");
 	title.setSize(175,13);
 	title.setLocation(10,3);
@@ -35,27 +38,32 @@ public class ToteTally {
 	JLabel stack1 = new JLabel("1:");
 	stack1.setLocation(10,20);
 	stack1.setSize(13,13);
+	
 	JLabel stack2 = new JLabel("2:");
 	stack2.setLocation(10,45);
 	stack2.setSize(13,13);
+	
 	JLabel stack3 = new JLabel("3:");
 	stack3.setLocation(10,70);
 	stack3.setSize(13,13);
+	
 	JLabel stack4 = new JLabel("4:");
 	stack4.setLocation(10,95);
 	stack4.setSize(13,13);
+	
 	JLabel stack5 = new JLabel("5:");
 	stack5.setLocation(10,120);
 	stack5.setSize(13,13);
+	
 	JLabel stack6 = new JLabel("6:");
 	stack6.setLocation(10,145);
 	stack6.setSize(13,13);
 	
-	
+	//creates a font for the input fields
 	Font input = new Font("Helvetica", Font.BOLD, 18);
 	
 	 
-	 
+	//assigns attributes for the input fields
 	one.setLocation(100,18);
 	one.setSize(75,19);
 	one.setText("0");
@@ -93,7 +101,7 @@ public class ToteTally {
 	six.setHorizontalAlignment(JTextField.CENTER);
 	
 	
-	
+	//adds everything to the panel
 	
 	panel.add(title);
 	panel.add(stack1);

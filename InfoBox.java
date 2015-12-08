@@ -10,7 +10,10 @@ import javax.swing.border.Border;
 
 public class InfoBox {
 
+	//creates the panel
 	public JPanel panel = new JPanel();
+	
+	//sets up the check boxes and their groups
 	Checkbox floor = new Checkbox("Floor");
 	Checkbox can = new Checkbox("Can");
 	Checkbox hp = new Checkbox("HP");
@@ -26,12 +29,12 @@ public class InfoBox {
 	Checkbox sfour = new Checkbox("4",stackGroup,false);
 	Checkbox sfive = new Checkbox("5",stackGroup,false);
 	Checkbox ssix = new Checkbox("6",stackGroup,false);
-Checkbox plus = new Checkbox("+");
+    Checkbox plus = new Checkbox("+");
 
 	public InfoBox()
 	{
+		//creates border and panel attributes
 		Border border = BorderFactory.createLineBorder(Color.black);
-	
 		panel.setLayout(null);
 		panel.setSize(200,168);
 		panel.setLocation(253,221);
@@ -39,19 +42,19 @@ Checkbox plus = new Checkbox("+");
 		panel.setBorder(border);
 	
 
+	//labels each field
 	JLabel litter = new JLabel("Successful Litter:");
 	litter.setSize(175,13);
 	litter.setLocation(5,3);
 	JLabel coopertition = new JLabel("Coopertition:");
 	coopertition.setSize(175,13);
-	coopertition.setLocation(5,56);
-	
+	coopertition.setLocation(5,56);	
 	JLabel stackapacity = new JLabel("stackapacity:");
 	stackapacity.setSize(175,13);
 	stackapacity.setLocation(5,100);
 	
 	
-	
+	//gives attributes to the check boxes
 	can.setSize(40,13);
 	can.setLocation(7,20);
 	
